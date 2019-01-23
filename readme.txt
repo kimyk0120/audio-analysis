@@ -6,3 +6,10 @@ $ brew update
   pip install pyaudio
 '''
 
+
+# pyglet install
+1. $ pip install pyglet
+2. download avbin : https://avbin.github.io/AVbin/Home/Home.html
+3. $ defaults write org.python.python ApplePersistenceIgnoreState NO
+
+
