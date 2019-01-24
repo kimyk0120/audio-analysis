@@ -1,3 +1,15 @@
+# dependencies
+
+ffmpeg      1.4
+future      0.17.1
+pip         19.0
+PyAudio     0.2.11
+pydub       0.23.1
+pygame      1.9.4
+pyglet      1.3.2
+setuptools  40.6.3
+simpleaudio 1.0.2
+
 #  src/_portaudiomodule.c:29:10: fatal error: 'portaudio.h' file not found
 '''
 $ brew update
