@@ -29,3 +29,5 @@ playlist_length = len(playlist) / (1000*60)
 out_f = open("output/%s_minute_playlist.mp3" % playlist_length, 'wb')
 
 playlist.export(out_f, format='mp3')
+
+

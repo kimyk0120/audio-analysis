@@ -34,3 +34,8 @@ OR
 
 - ffmpeg
 brew install ffmpeg --with-libvorbis --with-sdl2 --with-theora
+
+
+# pycharm memory increase
+MENU - Help - Edit custom VMoption -> -xmx edit.
+
