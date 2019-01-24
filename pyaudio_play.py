@@ -1,4 +1,7 @@
+'''
+    wav -> wav 시에 디스토션 발생
 
+'''
 import pyaudio
 import wave
 

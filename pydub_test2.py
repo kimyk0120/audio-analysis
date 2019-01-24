@@ -2,6 +2,7 @@
 
 import pyaudio_play
 from pydub import AudioSegment
+from pydub.playback import play
 
 wav_path = "audio-source/wave/noexcuses.wav"
 mp3_path = "audio-source/mp3/noexcuses.mp3"
@@ -50,5 +51,9 @@ output_path = 'output/awesome.wav'
 awesome.export(output_path, format='wav', parameters=["-q:a", "10", "-ac", "1"])
 
 
+# Save the results (again whatever ffmpeg supports)
+awesome.export("output/mashup.mp3", format="mp3")
 
+# play # need ffmpeg set up
+play(awesome)
 
