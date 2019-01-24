@@ -2,8 +2,8 @@
 from pydub import AudioSegment
 from pathlib import Path
 
-sound1 = AudioSegment.from_file("audio-source/wave/a2002011001-e02.wav", format="wav")
-sound2 = AudioSegment.from_file("audio-source/wave/littlewing.wav", format="wav")
+sound1 = AudioSegment.from_file("../../audio-source/wave/a2002011001-e02.wav", format="wav")
+sound2 = AudioSegment.from_file("../../audio-source/wave/littlewing.wav", format="wav")
 
 # also supports the os.PathLike protocol for python >= 3.6
 # wav_path = Path("path/to/sound.wav")

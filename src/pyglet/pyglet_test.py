@@ -10,7 +10,7 @@ import time
 
 
 player = pyglet.media.Player()
-source = pyglet.media.load('mp3/noexcuses.mp3')
+source = pyglet.media.load('../../audio-source/mp3/noexcuses.mp3')
 player.queue(source)
 player.play()
 

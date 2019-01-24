@@ -10,7 +10,7 @@ pyglet      1.3.2
 setuptools  40.6.3
 simpleaudio 1.0.2
 
-#  src/_portaudiomodule.c:29:10: fatal error: 'portaudio.h' file not found
+# src/_portaudiomodule.c:29:10: fatal error: 'portaudio.h' file not found
 '''
 $ brew update
   brew install portaudio # cross-platform, open-source, audio I/O library.

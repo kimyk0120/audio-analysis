@@ -1,9 +1,8 @@
-
-import pyaudio_play
+# from pyaudio import pyaudio_play
 from pydub import AudioSegment
 
 # Open file
-song = AudioSegment.from_mp3('audio-source/mp3/noexcuses.mp3')
+song = AudioSegment.from_mp3('../../audio-source/mp3/noexcuses.mp3')
 
 # Slice audio
 # pydub는 milliseconds 단위를 사용한다
@@ -21,15 +20,15 @@ beginning = first_10_seconds + 6
 
 # Save the result
 # can give parameters-quality, channel, etc
-beginning.export('output/result.wav', format='wav', parameters=["-q:a", "10", "-ac", "1"])
+beginning.export('../../output/result.wav', format='wav', parameters=["-q:a", "10", "-ac", "1"])
 
 # change stereo to mono
 # sound = AudioSegment.from_wav("audio-source/wave/littlewing.wav")
 # sound = sound.set_channels(1)
 # sound.export("output/path.wav", format="wav")
 
-fPath = "output/result.wav"
+fPath = "../../output/result.wav"
 
 # play result
-player = pyaudio_play.Audio_play()
-player.play(fPath)
+# player = pyaudio_play.Audio_play()
+# player.play(fPath)

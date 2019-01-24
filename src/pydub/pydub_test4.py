@@ -4,13 +4,13 @@ from pydub import AudioSegment
 import os
 
 
-playlist_songs = [AudioSegment.from_mp3(mp3_file) for mp3_file in glob("output/*.mp3")]
+playlist_songs = [AudioSegment.from_mp3(mp3_file) for mp3_file in glob("../../output/*.mp3")]
 print(playlist_songs)
 
 first_song = playlist_songs.pop(0)
 
 # let's just include the first 30 seconds of the first song (slicing
-# is done by milliseconds)
+# is pyglet by milliseconds)
 beginning_of_song = first_song[:30*1000]
 
 playlist = beginning_of_song
@@ -26,7 +26,7 @@ playlist = playlist.fade_out(30)
 playlist_length = len(playlist) / (1000*60)
 
 # lets save it!
-out_f = open("output/%s_minute_playlist.mp3" % playlist_length, 'wb')
+out_f = open("../../output/%s_minute_playlist.mp3" % playlist_length, 'wb')
 
 playlist.export(out_f, format='mp3')
 

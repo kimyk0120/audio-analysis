@@ -9,7 +9,7 @@ import sys
 #     print("Plays a wave file.\n\nUsage: %s filename.wav" % sys.argv[0])
 #     sys.exit(-1)
 
-wf = wave.open("audio-source/wave/littlewing.wav", 'rb')
+wf = wave.open("../../audio-source/wave/littlewing.wav", 'rb')
 
 # instantiate PyAudio (1)
 p = pyaudio.PyAudio()
