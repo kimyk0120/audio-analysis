@@ -164,3 +164,31 @@ bytes_per_frame2 = sound_mono.frame_width
 # print(monos)
 
 
+'''
+    AudioSegment(…).apply_gain_stereo()
+'''
+
+# make left channel 6dB quieter and right channe 2dB louder
+stereo_balance_adjusted = sound.apply_gain_stereo(-6, +2)
+
+
+'''
+    AudioSegment(…).pan()
+'''
+# pan the sound 15% to the right
+panned_right = sound.pan(+0.15)
+
+# pan the sound 50% to the left
+panned_left = sound.pan(-0.50)
+
+
+
+'''
+    AudioSegment(…).get_array_of_samples()
+     if the audio has multiple channels, the samples for each channel will be serialized –
+     for example, stereo audio would look like [sample_1_L, sample_1_R, sample_2_L, sample_2_R, …].
+'''
+
+samples = sound.get_array_of_samples()
+# print(samples)
+
