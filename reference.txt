@@ -14,6 +14,49 @@ ex) <예>
 --> [특징값: MFCC] --> [분류기:로지스틱 분류기] --> 배고프다 vs 졸리다 판별
 
 
+# 전처리
+
+- 알고리즘에 넣기 전에 사용에 용이하도록 처리를 해주는 것
+- VAD (voice activity detection:음성 탐지)를 쓴다든지,
+  신호의 크기가 다들 비슷비슷하다면 단순히 프레임의 평균/최대 진폭을 비교한다.
+  후자의 경우 오디오 편집 툴에서 [노이즈 게이트]를 활용하면 된다.
+- SNR확보: 신호의 잡음을 줄여준다.
+  EQ, 필터: 신호가 존재할 수 있는 주파수 대역을 증폭시키거나
+  반대로 없는 부분을 자름.
+- 볼륨 정규화: 오디오 신호의 진폭(amplitude)를 최대값 ([-1, 1])로 키워줘서
+  디지털 신호에 할당된 비트수를 최대한 활용하도록 한다
+- Normalization
+     '''
+          import numpy as np
+          import librosa
+          x = librosa.core('event1.mp3', sr=None, mono=True)
+          x = x / np.max(np.abs(x))
+     '''
+- Whitening (데이터의 분포를 평균을 0, 표준편차를 1로 맞춰준다)
+- PCA - Principle Component Analysis를 써서 고차원 데이터를 압축
+- Trimming
+    앞뒤에 조용한 구간이 있다면 싹둑 잘라주는편이 좋겠죠.
+    이건 어느정도 대애충 감으로 하는게 편할것같네요.
+    저라면, hann window같은걸 씌우고,
+    각 윈도에서 평균 에너지를 구해서 (np.mean(np.abs(windowed_source_x) ** 2)),
+    그 윈도 별 평균 에너지를 기준으로,아무런 음향 이벤트가 안일어나는 첫 N개의 윈도와 마지막 M개의 윈도를 날리겠습니다
+- Augmentation
+    데이터가 부족하면 뻥튀기를 하고싶겠죠? 방법은 여러가지가 있습니다. 적당한 구간에서 pitch shift / time expanding을
+    하시면 무난할테고, 다른 잡음을 적당히 섞어주는것도 좋겠죠 (x = x + gain * noise).
+
+
+# 특징값 추출 (feature extraction)
+
+- MFCC
+    - MFCC는 이 배음 구조의 차이를 표현하는 숫자
+    - 음정 (음고, pitch)이 변해도 MFCC가 (나름대로) 일정하게 유지
+    - 음성 인식, 음악의 장르 분석, 감정 인식 등 다양한 분야에서 MFCC를 활용
+- spectral centroid
+- spectral rolloff
+- zero-crossing
+- spectral flux
+- energy
+
 
 
 # sample rate ( 44100 Hz혹은 44.1KHz )
@@ -172,3 +215,21 @@ k가 N에 가까워 질 수록  그만큼 시간이 많이 걸린다.
 
 
 # PCA - Principle Component Analysis (주성분분석)
+
+# 스펙트럼
+
+스펙트럼은 어떤 신호를 소리의 높이에 따라 분해했을 때,
+각 높이에 해당하는 성분이 얼마나 강한지 나타냅니다.
+이 때, 신호의 높이를 주파수라고 하고,
+낮은 소리는 낮은 주파수 성분이 강하게,
+높은 소리는 높은 주파수의 성분이 강하게 나옵니다.
+이를 통해 어떤 소리의 특징을 보다 알기 쉽게 표현할 수 있습니다.
+스펙트럼을 짧은 시간마다 반복해서 추출한 것을
+STFT(short-time Fourier transform)이라고 합니다.
+많은 경우에 음원 자체(raw wave)를 이용하는 것보다 스펙트럼과 같이
+분석된 정보를 이용하는 것이 기계학습에 더 효율이 좋다고 알려져 있습니다.
+
+
+
+
+

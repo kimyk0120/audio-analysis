@@ -25,8 +25,8 @@ mfcc 프레임 기반 특징값입니다. 즉, 각 프레임 (대체로 수 십 
 위의 코드를 실행하면 mfcc는 2차원 어레이가 할당됩니다. 
 '''
 
-# print(mfcc)
-# print(mfcc.shape) # (20, number_of_frames)
+print(mfcc)
+print(mfcc.shape) # (20, number_of_frames)
 
 
 # logreg = linear_model.LogisticRegression()
