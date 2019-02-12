@@ -1,3 +1,6 @@
+'''
+    # 자료 준비와 전처리
+'''
 import os # 파일 목록을 구할 때 필요한 패키지
 
 
@@ -31,7 +34,6 @@ def gather_information(part): # part 인자에는 'train', 'valid', 'test' 등�
 
 
 if __name__ == '__main__' :
-    # pass
     gather_information('nsynth-train') # 위 함수를 'train', 'valid', 'test'에 대해 실행합니다.
     gather_information('nsynth-valid')
     gather_information('nsynth-test')

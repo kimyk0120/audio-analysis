@@ -181,6 +181,9 @@ Linear Prediction Cepstral Coefficient(LPCC) 기법이 음성 인식 기법으�
 
 # STFT (Short-Time Furier Transform)
 
+- 스펙트럼을 짧은 시간마다 반복해서 추출한 것
+
+
 
 # 교차검증
 
