@@ -34,7 +34,7 @@ def extract_spectrum(part):
         y, sr = librosa.load("../../audio-source/"+part+'/audio/'+f+'.wav', sr=16000) # librosa를 이용해 샘플 파일을 읽습니다.
         D = librosa.stft(y, n_fft=1024, hop_length=256).T # short-time Fourier transform을 합니다.
         mag, phase = librosa.magphase(D) # phase 정보를 제외하고, 세기만 얻습니다.
-        S = numpy.log(1 + mag * 1000) # 로그형태로 변환합니다.
+        S = numpy.log(1 + mag * 1000) # log함수를 이용해 스펙트럼의 세기를 변환
         if part == 'nsynth-train': # 'train'인 경우 합계와 제곱의 합을 누적합니다.
             data_sum += S
             data_squared_sum += S ** 2

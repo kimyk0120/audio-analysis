@@ -22,33 +22,37 @@ feature_dimension = 513
 
 
 def extract_spectrum(part):
-    # sample_files = open(part + '_samples.txt').read().strip().split('\n') # 샘플 목록을 읽어옵니다.
-    testFileNm =  "bass_synthetic_059-025-025"
+    sample_files = open(part + '_samples.txt').read().strip().split('\n') # 샘플 목록을 읽어옵니다.
+    print(sample_files)
+    testFileNm = "keyboard_electronic_093-044-100"
     print(testFileNm)
 
-    # if part == 'nsynth-train': # 'train'인 경우에는 평균과 표준편차를 구해야 합니다.
-        # data_sum = numpy.zeros((sequence_length, feature_dimension)) # 합계를 저장할 변수를 만듭니다.
-        # data_squared_sum = numpy.zeros((sequence_length, feature_dimension)) # 제곱의 합을 저장할 변수입니다.
+    if part == 'nsynth-train': # 'train'인 경우에는 평균과 표준편차를 구해야 합니다.
+        # numpy.zeros : 크기가 정해져 있고 모든 값이 0인 배열을 생성
+        data_sum = numpy.zeros((sequence_length, feature_dimension)) # 합계를 저장할 변수를 만듭니다.
+        data_squared_sum = numpy.zeros((sequence_length, feature_dimension)) # 제곱의 합을 저장할 변수입니다.
 
+    # print(data_sum)
 
-    # if not os.path.exists("../../audio-source/"+part+'/spectrum/'): # 'spectrum' 디렉토리가 존재하지 않으면 만들어 줍니다.
-    #     os.mkdir("../../audio-source/"+part+'/spectrum/')
-    # for f in sample_files:
-    #     print('%d/%d: %s'%(sample_files.index(f), len(sample_files), f)) # 현재 진행상황을 출력합니다.
-    #     y, sr = librosa.load("../../audio-source/"+part+'/audio/'+f+'.wav', sr=16000) # librosa를 이용해 샘플 파일을 읽습니다.
-    #     D = librosa.stft(y, n_fft=1024, hop_length=256).T # short-time Fourier transform을 합니다.
-    #     mag, phase = librosa.magphase(D) # phase 정보를 제외하고, 세기만 얻습니다.
-    #     S = numpy.log(1 + mag * 1000) # 로그형태로 변환합니다.
-    #     if part == 'nsynth-train': # 'train'인 경우 합계와 제곱의 합을 누적합니다.
-    #         data_sum += S
-    #         data_squared_sum += S ** 2
-    #     numpy.save("../../audio-source/"+part+'/spectrum/'+f+'.npy', S) # 현재 샘플의 스펙트럼을 저장합니다.
-    # if part == 'nsynth-train': # 모든 파일의 변환이 끝난 후에, 'train'인 경우 평균과 표준편차를 저장합니다.
-    #     data_mean = data_sum / len(sample_files)
-    #     data_std = (data_squared_sum / len(sample_files) - data_mean ** 2) ** 0.5
-    #     numpy.save('data_mean.npy', data_mean)
-    #     numpy.save('data_std.npy', data_std)
+    # load the audio as a waveform `y`
+    # Store the sampling rate as `sr`
+    y, sr = librosa.load("../../audio-source/"+part+'/audio/'+testFileNm+'.wav', sr=16000) # librosa를 이용해 샘플 파일을 읽습니다.
+    # y, sr = librosa.load("../../audio-source/wave/littlewing.wav")
+    # print(y)
+    # print(sr)
 
+    D = librosa.stft(y, n_fft=1024, hop_length=256).T # short-time Fourier transform을 합니다.
+    # print(D)
+
+    mag, phase = librosa.magphase(D) # phase 정보를 제외하고, 세기만 얻습니다.
+    # print(mag)
+
+    # 로그로 변형
+    S = numpy.log(1 + mag * 1000) # log함수를 이용해 스펙트럼의 세기를 변환
+    print(S)
+
+    # 1개의 배열을 NumPy format의 바이너리 파일로 저장하기
+    numpy.save(testFileNm+"_test_spectrum"+'.npy', S) # 현재 샘플의 스펙트럼을 저장합니다.
 
 if __name__ == '__main__':
     for part in ['nsynth-train']:

@@ -1,3 +1,5 @@
+출처: https://maclab-kaist.github.io/DeepArt/
+
 #
 numpy: 수치 자료를 고속으로 다루기 위한 라이브러리입니다.
 librosa: 음원 파일을 분석하는 데 필요한 라이브러리입니다.
@@ -73,3 +75,20 @@ feature_dimension = 513
 비슷한만큼 커졌다고 인식하게 됩니다.
 이를 수학적으로 로그함수(logarithm)으로 나타낼 수 있습니다.
 이에 따라 log함수를 이용해 스펙트럼의 세기를 변환해주는 것이 좋습니다.
+
+
+# 모델의 각 레이어와 레이어별 출력 사이즈
+
+input: (sequence_length * spectrum_size), 1
+convolution1: (3 * spectrum_size), 64
+maxpool1: (3 * 1)
+convolution2: (3 * 1), 64
+maxpool2: (3 * 1)
+convolution3: (3 * 1), 128
+maxpool3: (3 * 1)
+convolution4: (3 * 1), 128
+maxpool4: (3 * 1)
+flatten: (n)
+fc1: 256
+fc2: 256
+fc3: n_labels
