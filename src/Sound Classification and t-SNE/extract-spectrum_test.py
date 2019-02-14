@@ -15,10 +15,10 @@ import os.path # 특정 경로가 존재하는지 파악하기 위해 필요
 # 즉, 모든 스펙트럼은 자신과 인접한 스펙트럼과 768개의 샘플을 공유하게 됩니다.
 # NSynth 데이터셋의 경우(전부 4초) 16,000 Hz로 일초에 16,000번 기록했다는 의미입니다.
 # 전체 샘플 길이는 4초이니 각 샘플은 총 16,000 * 4 = 64,000개의 샘플
-# 그러므로 64000을 256 개씩 넘어가며 스펙트럼을 추출
-sequence_length = 251
+# 그러므로 64000을 256 개씩 넘어가며 스펙트럼을 추출 64000 / 256 -> 250
+sequence_length = 251 # 스펙트럼의 길이
 # ?? 스펙트럼에 1024개의 샘플을 넣었기 때문에 결과로 나오는 한 스펙트럼은 513개의 값을 가집니다. ??
-feature_dimension = 513
+feature_dimension = 513 # 스펙트럼의 크기
 
 
 def extract_spectrum(part):
@@ -53,6 +53,7 @@ def extract_spectrum(part):
 
     # 1개의 배열을 NumPy format의 바이너리 파일로 저장하기
     numpy.save(testFileNm+"_test_spectrum"+'.npy', S) # 현재 샘플의 스펙트럼을 저장합니다.
+
 
 if __name__ == '__main__':
     for part in ['nsynth-train']:
